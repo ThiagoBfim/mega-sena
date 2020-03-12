@@ -5,16 +5,12 @@ import properties.FileProperties;
 import properties.JogoProperties;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public abstract class AbstractCalculadoraResultado {
     private final Resultado resultado = new Resultado();
-    private final List<String> numeros;
-
-    public AbstractCalculadoraResultado(List<String> numeros) {
-        this.numeros = numeros;
-    }
 
     public final Resultado calcularResultado() {
         final String delimitador = FileProperties.getDelimiterSeparator();
@@ -26,14 +22,20 @@ public abstract class AbstractCalculadoraResultado {
     protected abstract Collection<Jogo> getData();
 
     private void calculateResult(Collection<Jogo> jogos, String delimitador) {
+        Set<String> resultJogo = getResultJogo();
         jogos.forEach(jogo -> {
             long count = Stream.of(splitJogoToNumbers(delimitador, jogo))
-                    .filter(d -> numeros.contains(d.trim()))
+                    .filter(d -> resultJogo.contains(d.trim()))
                     .count();
             if (count >= JogoProperties.getMinQtdAcertosAceito()) {
                 resultado.addResult(count);
             }
         });
+    }
+
+    public Set<String> getResultJogo() {
+        return Stream.of(JogoProperties.getResultJogo().split(","))
+                    .collect(Collectors.toSet());
     }
 
     private String[] splitJogoToNumbers(String delimitador, Jogo jogo) {

@@ -30,7 +30,6 @@ public enum JogoType {
         return quantidadeAcertos;
     }
 
-
     public double getPrize() {
         switch (this) {
             case UM:

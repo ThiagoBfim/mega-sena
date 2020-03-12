@@ -28,6 +28,10 @@ public class JogoProperties {
         return PropertiesHelper.getIntegerProperty(ROOT_PROPERTY + "min_qtd_acertos");
     }
 
+    public static String getResultJogo(){
+        return PropertiesHelper.getStringProperty(ROOT_PROPERTY + "result");
+    }
+
 
 
 }

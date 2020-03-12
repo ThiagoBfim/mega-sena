@@ -13,6 +13,7 @@ public class Jogo {
     public Jogo() {
         generateJogo();
     }
+
     public Jogo(String jogo) {
         this.jogoHash.append(jogo);
     }
@@ -22,8 +23,7 @@ public class Jogo {
         while (jogo.size() < JogoProperties.getQuantidadeNumeroPorJogos()) {
             jogo.add(new Random().nextInt(60) + 1);
         }
-        jogo
-                .stream()
+        jogo.stream()
                 .sorted()
                 .forEach(numero -> jogoHash.append(numero).append(","));
     }

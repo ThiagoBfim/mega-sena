@@ -6,12 +6,18 @@ import properties.FileProperties;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-import java.util.stream.Stream;
 
 class CalculadoraFileResultado extends AbstractCalculadoraResultado {
 
-    public CalculadoraFileResultado(List<String> numeros) {
-        super(numeros);
+    private Set<String> resultJogo;
+
+    public CalculadoraFileResultado(Set<String> resultJogo) {
+        this.resultJogo = resultJogo;
+    }
+
+    @Override
+    public Set<String> getResultJogo() {
+        return resultJogo;
     }
 
     public Collection<Jogo> retriveData() {

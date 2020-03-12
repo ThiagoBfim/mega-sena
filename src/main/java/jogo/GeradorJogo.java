@@ -1,12 +1,10 @@
 package jogo;
 
+import properties.JogoProperties;
 import resultado.CalculadoraJogoResultado;
 import resultado.Resultado;
 import util.GlobalUtil;
-import properties.JogoProperties;
-import jogo.Jogo;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +18,7 @@ class GeradorJogo {
         }
         GlobalUtil.calculateElapsedTime(start);
 
-        CalculadoraJogoResultado calculadoraJogoResultado = new CalculadoraJogoResultado(Arrays.asList("01", "13", "18", "26", "40", "56"), jogos);
+        CalculadoraJogoResultado calculadoraJogoResultado = new CalculadoraJogoResultado(jogos);
         Resultado resultado = calculadoraJogoResultado.calcularResultado();
         System.out.println(resultado.calcularPontos());
 //        saveJogoInFile(jogos);
