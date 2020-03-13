@@ -1,7 +1,7 @@
 package util;
 
-import properties.FileProperties;
 import jogo.Jogo;
+import properties.FileProperties;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -18,7 +18,7 @@ public class GlobalUtil {
     }
 
     public static void saveJogoInFile(Set<Jogo> jogos) throws FileNotFoundException {
-        String fileName =  FileProperties.getLocationSave();
+        String fileName = FileProperties.getLocationSave();
         try (PrintStream out = new PrintStream(new FileOutputStream(fileName))) {
             out.print(jogos.toString());
         }

@@ -2,7 +2,6 @@ package properties;
 
 public class PropertiesHelper {
 
-
     public static Integer getIntegerProperty(String property){
         return Integer.valueOf(PropertiesSearch.getInstance().getProperty(property));
     }

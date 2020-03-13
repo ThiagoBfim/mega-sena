@@ -35,7 +35,7 @@ public abstract class AbstractCalculadoraResultado {
 
     public Set<String> getResultJogo() {
         return Stream.of(JogoProperties.getResultJogo().split(","))
-                    .collect(Collectors.toSet());
+                .collect(Collectors.toSet());
     }
 
     private String[] splitJogoToNumbers(String delimitador, Jogo jogo) {

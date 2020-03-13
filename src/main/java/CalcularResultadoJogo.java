@@ -14,8 +14,9 @@ class CalcularResultadoJogo {
     }
 
     private static void calcularJogos(Set<String> numeros, String filePath) {
-        CalculadoraFileResultado calculadoraQuartoJogo = new CalculadoraFileResultado(numeros, filePath);
-        System.out.println(calculadoraQuartoJogo.calcularResultado().calcularPontos());
+        System.out.println(new CalculadoraFileResultado(numeros, filePath)
+                .calcularResultado()
+                .calcularPontos());
     }
 
 }

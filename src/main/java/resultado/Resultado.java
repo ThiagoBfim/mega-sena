@@ -41,8 +41,8 @@ public class Resultado {
     public String toString() {
         StringBuilder resultadoFormatado = new StringBuilder("Resultado: ");
         resultadoJogos.forEach((k, v) -> {
-            if(k.getQuantidadeAcertos() >= JogoProperties.getMinQtdAcertosAceito())
-            resultadoFormatado.append(k).append(" = ").append(v).append(" | ");
+            if (k.getQuantidadeAcertos() >= JogoProperties.getMinQtdAcertosAceito())
+                resultadoFormatado.append(k).append(" = ").append(v).append(" | ");
         });
         return resultadoFormatado.toString();
     }
