@@ -23,6 +23,7 @@ public abstract class AbstractCalculadoraResultado {
 
     protected Set<String> getResultadoJogo() {
         return Stream.of(JogoProperties.getResultadoJogo().split(","))
+                .map(String::trim)
                 .collect(Collectors.toSet());
     }
 
