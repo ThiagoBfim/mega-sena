@@ -20,11 +20,11 @@ class GeradorJogo {
 
         Resultado resultado = new CalculadoraJogoResultado(jogos)
                 .calcularResultado();
-        double valorGasto = JogoProperties.getPriceJogo() * jogos.size();
-        System.out.println("Ganho: R$: " + NumberFormat.getCurrencyInstance().format(resultado.calcularPontos()));
+        double valorGasto = JogoProperties.getPrecoJogo() * jogos.size();
+        System.out.println("Ganho: R$: " + NumberFormat.getCurrencyInstance().format(resultado.calcularPreco()));
         System.out.println("Gasto: R$: " + NumberFormat.getCurrencyInstance().format(valorGasto));
-        System.out.println("Lucro: R$: " + NumberFormat.getCurrencyInstance().format(resultado.calcularPontos() - valorGasto));
-        if (StringUtils.isNoneBlank(FileProperties.getLocationSave())) {
+        System.out.println("Lucro: R$: " + NumberFormat.getCurrencyInstance().format(resultado.calcularPreco() - valorGasto));
+        if (StringUtils.isNoneBlank(FileProperties.getCaminhoSalvarArquivo())) {
             GlobalUtil.saveJogoInFile(jogos);
         }
     }

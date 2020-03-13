@@ -39,11 +39,11 @@ public enum JogoType {
             case TRES:
                 return 16;
             case QUATRO:
-                return JogoProperties.getPrizeFour();
+                return JogoProperties.getPremioQuadra();
             case CINCO:
-                return JogoProperties.getPrizeFive();
+                return JogoProperties.getPremioQuina();
             case SEIS:
-                return JogoProperties.getPrizeSix();
+                return JogoProperties.getPremioSena();
             default:
                 return 0;
         }

@@ -12,17 +12,22 @@ import java.util.stream.Stream;
 public abstract class AbstractCalculadoraResultado {
     private final Resultado resultado = new Resultado();
 
+    protected abstract Collection<Jogo> getData();
+
     public final Resultado calcularResultado() {
-        final String delimitador = FileProperties.getDelimiterSeparator();
+        final String delimitador = FileProperties.getSeparadorNumeros();
         calculateResult(getData(), delimitador);
         System.out.println(resultado);
         return resultado;
     }
 
-    protected abstract Collection<Jogo> getData();
+    protected Set<String> getResultadoJogo() {
+        return Stream.of(JogoProperties.getResultadoJogo().split(","))
+                .collect(Collectors.toSet());
+    }
 
     private void calculateResult(Collection<Jogo> jogos, String delimitador) {
-        Set<String> resultJogo = getResultJogo();
+        Set<String> resultJogo = getResultadoJogo();
         jogos.forEach(jogo -> {
             long count = Stream.of(splitJogoToNumbers(delimitador, jogo))
                     .filter(d -> resultJogo.contains(d.trim()))
@@ -31,11 +36,6 @@ public abstract class AbstractCalculadoraResultado {
                 resultado.addResult(count);
             }
         });
-    }
-
-    public Set<String> getResultJogo() {
-        return Stream.of(JogoProperties.getResultJogo().split(","))
-                .collect(Collectors.toSet());
     }
 
     private String[] splitJogoToNumbers(String delimitador, Jogo jogo) {

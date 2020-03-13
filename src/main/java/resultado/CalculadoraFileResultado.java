@@ -13,7 +13,7 @@ public class CalculadoraFileResultado extends AbstractCalculadoraResultado {
     private String fileName;
 
     public CalculadoraFileResultado(Set<String> resultJogo) {
-        this(resultJogo, FileProperties.getLocationLoad());
+        this(resultJogo, FileProperties.getCaminhoCarregarArquivo());
     }
 
     public CalculadoraFileResultado(Set<String> resultJogo, String fileName) {
@@ -22,8 +22,13 @@ public class CalculadoraFileResultado extends AbstractCalculadoraResultado {
     }
 
     @Override
-    public Set<String> getResultJogo() {
+    public Set<String> getResultadoJogo() {
         return resultJogo;
+    }
+
+    @Override
+    protected Collection<Jogo> getData() {
+        return retriveData();
     }
 
     public Collection<Jogo> retriveData() {
@@ -48,11 +53,6 @@ public class CalculadoraFileResultado extends AbstractCalculadoraResultado {
     private Scanner loadFile() throws FileNotFoundException {
         File myObj = new File(fileName);
         return new Scanner(myObj);
-    }
-
-    @Override
-    protected Collection<Jogo> getData() {
-        return retriveData();
     }
 
 }

@@ -16,7 +16,7 @@ class CalcularResultadoJogo {
     private static void calcularJogos(Set<String> numeros, String filePath) {
         System.out.println(new CalculadoraFileResultado(numeros, filePath)
                 .calcularResultado()
-                .calcularPontos());
+                .calcularPreco());
     }
 
 }

@@ -18,7 +18,7 @@ public class GlobalUtil {
     }
 
     public static void saveJogoInFile(Set<Jogo> jogos) throws FileNotFoundException {
-        String fileName = FileProperties.getLocationSave();
+        String fileName = FileProperties.getCaminhoSalvarArquivo();
         try (PrintStream out = new PrintStream(new FileOutputStream(fileName))) {
             out.print(jogos.toString());
         }

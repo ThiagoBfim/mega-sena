@@ -18,5 +18,4 @@ public class CalculadoraJogoResultado extends AbstractCalculadoraResultado {
         return jogos;
     }
 
-
 }

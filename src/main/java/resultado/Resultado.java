@@ -30,19 +30,20 @@ public class Resultado {
         getResultadoJogos().merge(jogo, 1, Integer::sum);
     }
 
-    public double calcularPontos() {
-        DoubleAdder somaPontos = new DoubleAdder();
+    public double calcularPreco() {
+        DoubleAdder somaPreco = new DoubleAdder();
         this.getResultadoJogos()
-                .forEach((k, v) -> somaPontos.add(k.getPrize() * v));
-        return somaPontos.doubleValue();
+                .forEach((k, v) -> somaPreco.add(k.getPrize() * v));
+        return somaPreco.doubleValue();
     }
 
     @Override
     public String toString() {
         StringBuilder resultadoFormatado = new StringBuilder("Resultado: ");
         resultadoJogos.forEach((k, v) -> {
-            if (k.getQuantidadeAcertos() >= JogoProperties.getMinQtdAcertosAceito())
+            if (k.getQuantidadeAcertos() >= JogoProperties.getMinQtdAcertosAceito()) {
                 resultadoFormatado.append(k).append(" = ").append(v).append(" | ");
+            }
         });
         return resultadoFormatado.toString();
     }
