@@ -32,6 +32,8 @@ public class JogoProperties {
         return PropertiesHelper.getStringProperty(ROOT_PROPERTY + "result");
     }
 
-
+    public static Double getPriceJogo(){
+        return PropertiesHelper.getDoubleProperty(ROOT_PROPERTY + "price");
+    }
 
 }

@@ -7,12 +7,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-class CalculadoraFileResultado extends AbstractCalculadoraResultado {
+public class CalculadoraFileResultado extends AbstractCalculadoraResultado {
 
     private Set<String> resultJogo;
+    private String fileName;
 
     public CalculadoraFileResultado(Set<String> resultJogo) {
+        this(resultJogo, FileProperties.getLocationLoad());
+    }
+
+    public CalculadoraFileResultado(Set<String> resultJogo, String fileName) {
         this.resultJogo = resultJogo;
+        this.fileName = fileName;
     }
 
     @Override
@@ -40,7 +46,6 @@ class CalculadoraFileResultado extends AbstractCalculadoraResultado {
     }
 
     private Scanner loadFile() throws FileNotFoundException {
-        String fileName = FileProperties.getLocationLoad();
         File myObj = new File(fileName);
         return new Scanner(myObj);
     }
