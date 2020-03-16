@@ -1,19 +1,26 @@
 package resultado;
 
 import jogo.Jogo;
+import org.apache.commons.lang3.StringUtils;
 import properties.FileProperties;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
 
 public class CalculadoraFileResultado extends AbstractCalculadoraResultado {
 
     private Set<String> resultJogo;
     private String fileName;
+    private String delimitador;
 
-    public CalculadoraFileResultado(Set<String> resultJogo) {
-        this(resultJogo, FileProperties.getCaminhoCarregarArquivo());
+    public CalculadoraFileResultado(String delimitador) {
+        this.delimitador = delimitador;
+        this.fileName = FileProperties.getCaminhoCarregarArquivo();
     }
 
     public CalculadoraFileResultado(Set<String> resultJogo, String fileName) {
@@ -23,7 +30,18 @@ public class CalculadoraFileResultado extends AbstractCalculadoraResultado {
 
     @Override
     public Set<String> getResultadoJogo() {
-        return resultJogo;
+        if(resultJogo != null) {
+            return resultJogo;
+        }
+        return super.getResultadoJogo();
+    }
+
+    @Override
+    protected String getDelimitadorNumerosSorteio() {
+        if(StringUtils.isNotEmpty(delimitador)) {
+         return delimitador;
+        }
+        return super.getDelimitadorNumerosSorteio();
     }
 
     @Override

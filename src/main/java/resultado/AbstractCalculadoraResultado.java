@@ -15,19 +15,30 @@ public abstract class AbstractCalculadoraResultado {
     protected abstract Collection<Jogo> getData();
 
     public final Resultado calcularResultado() {
-        final String delimitador = FileProperties.getSeparadorNumeros();
-        calculateResult(getData(), delimitador);
+        calculateResult(getData());
         System.out.println(resultado);
         return resultado;
     }
 
+    protected String getDelimitadorNumerosSorteio() {
+        return FileProperties.getSeparadorNumeros();
+    }
     protected Set<String> getResultadoJogo() {
         return Stream.of(JogoProperties.getResultadoJogo().split(","))
                 .map(String::trim)
+                .map(this::removeZeroIfsFirst)
                 .collect(Collectors.toSet());
     }
 
-    private void calculateResult(Collection<Jogo> jogos, String delimitador) {
+    private String removeZeroIfsFirst(String s) {
+        if('0' == s.charAt(0)){
+            return s.replaceFirst("0", "");
+        }
+        return s;
+    }
+
+    private void calculateResult(Collection<Jogo> jogos) {
+        final String delimitador = getDelimitadorNumerosSorteio();
         Set<String> resultJogo = getResultadoJogo();
         jogos.forEach(jogo -> {
             long count = Stream.of(splitJogoToNumbers(delimitador, jogo))
